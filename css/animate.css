@@ -1,0 +1,57 @@
+/* type */
+
+.type-list-item {
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.type-list-enter {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.type-list-leave-to {
+    opacity: 0;
+    transform: translateY(-100px);
+}
+
+.type-list-leave-active {
+    position: absolute;
+}
+
+/* block */
+
+.block-list-item {
+    transition: all 0.3s;
+}
+
+.block-list-enter {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.block-list-leave-to {
+    opacity: 0;
+    transform: translateY(-100%);
+}
+
+.block-list-leave-active {
+    position: absolute;
+}
+
+/* item */
+
+.item-complete-item {
+    transition: all 0.3s;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.item-complete-enter, .item-complete-leave-to {
+    opacity: 0;
+    transform: translateX(30px);
+}
+
+.item-complete-leave-active {
+    position: absolute;
+}

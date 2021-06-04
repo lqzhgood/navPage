@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>导航页</title>
+    <link rel="stylesheet" href="./css/fonts/font.css">
+    <link rel="stylesheet" href="./css/icomoon/style.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/animate.css">
+    <script>
+        // can delete
+        var _hmt = _hmt || [];
+        (function () {
+            let hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?e6e49cf011b88a90c3138576b57289cf";
+            let s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+
+</head>
+
+<body>
+    <div id="app">
+        <div class="bg"></div>
+        <div class="main">
+            <div class="left">
+                <div class="top">
+                    Q
+                    <span class="dot" @click="window.open('./lib/walle/')">萌</span>
+                </div>
+                <transition-group class="list" name="type-list" tag="div" appear>
+                    <li class="type-list-item" v-for="type in typeList" :key="type" @click.stop="scrollTo(type)">{{type}}</li>
+                </transition-group>
+                <div class="bottom">
+                    <p>
+                        <a href="http://www.abc.com" target="_blank" title="网">
+                            <span class="icon-IE"></span>
+                        </a>
+                        <a href="http://m.abc.com" target="_blank" title="网-m">
+                            <span class="icon-play"></span>
+                        </a>
+                        <a href="https://weibo.com/abc" target="_blank" title="微博">
+                            <span class="icon-sina-weibo"></span>
+                        </a>
+                    </p>
+                    <p>
+                        <a href="http://r.abc.com" target="_blank" title="日">
+                            <span class="icon-newspaper"></span>
+                        </a>
+                        <a href="http://w.abc.com" target="_blank" title="晚">
+                            <span class="icon-newspaper"></span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <transition-group id="blockWrap" class="right" name="block-list" tag="div" appear>
+                <div class="block block-list-item" v-for="(item,type) in list" :id="type" :key="type" :style="{'order':item.order}" v-if="item.list.length>0">
+                    <div class="title">{{type}}</div>
+                    <!-- <div class="content"> -->
+                    <transition-group name="item-complete" tag="div">
+                        <div class="item item-complete-item" :class="{'disabled':v.disabled}" v-for="v in item.list" :key="v.id">
+                            <div class="card" @click.stop="op($event,v)">
+                                <div class="tags">
+                                    <span v-for="tag in v.tags" :key="tag.title" :class="tag.icon" :title="tag.title"></span>
+                                </div>
+                                <div class="img-box">
+                                    <img :src="'./img/card/'+ v.id + '.jpg'" alt="">
+                                </div>
+                                <div class="text-box">
+                                    <h4>{{v.name}}</h4>
+                                    <p class="des">{{v.des}}</p>
+                                </div>
+                                <div class="bar">
+                                    <div class="heart" :class="{'active':v.isFavorite}" @click="fav(v)"></div>
+                                    <div class="files">
+                                        <a download v-for="file in v.files" :key="file.src" :href="file.src" :title="file.title">
+                                            <span :class="file.icon"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition-group>
+                    <!-- </div> -->
+                </div>
+            </transition-group>
+        </div>
+    </div>
+    <script src="./data.js" charset="utf-8"></script>
+    <script src="./lib/vue.min.js" charset="utf-8"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>
