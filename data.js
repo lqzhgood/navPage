@@ -1,20 +1,21 @@
-let DATA = {
-    Favorite: {
-        order: -1,
-        list: [],
-    },
-    Work: {
-        order: 1,
+/* eslint-disable */
+var DATA = [
+    {
+        type: 'Work',
         list: [
             {
-                id: 100,
                 name: '编辑机房稿件',
                 des: '2L机房',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: './website/2l/',
-                files: [],
+                icon: '', // custom icon
+                files: [
+                    {
+                        src: './1.doc',
+                        title: 'word',
+                        icon: 'icon-file-word',
+                    },
+                ],
                 tags: [
                     {
                         title: '要求权限',
@@ -27,22 +28,16 @@ let DATA = {
                 ],
             },
             {
-                id: 101,
                 name: '每日报题',
                 des: '报题的序号真是麻烦',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: './website/bt/',
                 files: [],
                 tags: [],
             },
             {
-                id: 102,
                 name: '打卡签到',
                 des: '打卡也是个麻烦事',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: './website/qiandao/',
                 files: [
@@ -55,11 +50,8 @@ let DATA = {
                 tags: [],
             },
             {
-                id: 103,
                 name: '网络卡不卡',
                 des: '电脑卡还是网络卡谁知道呢~~',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: './website/lanDelay/lan.rar',
                 files: [],
@@ -71,22 +63,16 @@ let DATA = {
                 ],
             },
             {
-                id: 104,
                 name: 'ORC',
                 des: '扣字~',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: 'https://gongpeione.github.io/quick-js-ocr/example/',
                 files: [],
                 tags: [],
             },
             {
-                id: 105,
                 name: '后台代码片段',
                 des: '一行多个标题，视频代码生成',
-                type: 'Work',
-                isFavorite: false,
                 disabled: false,
                 url: './website/makeHtmlSnippet/index.html',
                 files: [],
@@ -94,15 +80,12 @@ let DATA = {
             },
         ],
     },
-    Fix: {
-        order: 2,
+    {
+        type: 'Fix',
         list: [
             {
-                id: 200,
                 name: '报警列表',
                 des: '各种警报邮件汇总',
-                type: 'Fix',
-                isFavorite: false,
                 disabled: false,
                 url: 'http://www.abc.com/',
                 files: [],
@@ -114,11 +97,8 @@ let DATA = {
                 ],
             },
             {
-                id: 201,
                 name: '小按钮',
                 des: '重启直播服务器',
-                type: 'Fix',
-                isFavorite: false,
                 disabled: false,
                 url: './website/btv/',
                 files: [],
@@ -130,11 +110,8 @@ let DATA = {
                 ],
             },
             {
-                id: 202,
                 name: '监控',
                 des: '服务器监控图表',
-                type: 'Fix',
-                isFavorite: false,
                 disabled: false,
                 url: 'http://www.abc.com/',
                 files: [],
@@ -146,9 +123,6 @@ let DATA = {
                 ],
             },
             {
-                id: 203,
-                type: 'Fix',
-                isFavorite: false,
                 disabled: false,
                 name: '监控后台',
                 des: '服务器监控报警后台',
@@ -162,9 +136,6 @@ let DATA = {
                 ],
             },
             {
-                id: 204,
-                type: 'Fix',
-                isFavorite: false,
                 disabled: false,
                 name: '启用虚拟机',
                 des: '10楼网络故障 B 计划',
@@ -179,26 +150,20 @@ let DATA = {
             },
         ],
     },
-    Live: {
-        order: 3,
+    {
+        type: 'Live',
         list: [
             {
-                id: 300,
                 name: '直播后台',
                 des: '直播后台控制',
-                type: 'Live',
-                isFavorite: false,
                 disabled: false,
                 url: 'http://www.abc.com/',
                 files: [],
                 tags: [],
             },
             {
-                id: 301,
                 name: '直播预览',
                 des: '看看有图像没',
-                type: 'Live',
-                isFavorite: false,
                 disabled: false,
                 url: 'http://www.abc.com/',
                 files: [],
@@ -206,4 +171,4 @@ let DATA = {
             },
         ],
     },
-};
+];

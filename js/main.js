@@ -4,49 +4,62 @@ new Vue({
     el: '#app',
     created() {
         let favList = localStorage.favList;
-        if (favList) {
+        try {
             favList = JSON.parse(favList);
-            this.list.Favorite.list = favList.filter(v => {
-                return v.isFavorite;
-            });
+            this.Favorite = favList;
+        } catch (error) {
+            localStorage.favList = '[]';
         }
+
+        let count = 0;
+        this.list = DATA.map(v => {
+            v.list.forEach(l => {
+                l.count = count;
+                count++;
+
+                if (favList.some(f => f.name == l.name)) {
+                    l.isFavorite = true;
+                }
+            });
+            return v;
+        });
     },
     data: {
-        list: DATA,
+        list: [],
+        Favorite: [],
     },
     computed: {
+        all_list() {
+            return (
+                this.Favorite.length > 0
+                    ? [
+                          {
+                              type: 'Favorite',
+                              list: this.Favorite,
+                          },
+                      ]
+                    : []
+            ).concat(this.list);
+        },
         typeList() {
-            let favList = this.list.Favorite.list;
-            let arr = Object.keys(this.list);
-            if (favList.length > 0) {
-                return arr;
-            } else {
-                arr.splice(
-                    arr.findIndex(type => type === 'Favorite'),
-                    1,
-                );
-                return arr;
-            }
+            return this.list.map(v => v.type);
         },
     },
     watch: {
-        list: {
-            handler(val, oldVal) {
-                localStorage.favList = JSON.stringify(val.Favorite.list);
-            },
-            deep: true,
+        Favorite(v) {
+            localStorage.favList = JSON.stringify(v);
         },
     },
     methods: {
         fav(ov) {
+            console.log('123', 123);
             ov.isFavorite = !ov.isFavorite;
-            let favList = this.list.Favorite.list;
             if (ov.isFavorite) {
-                favList.push(ov);
+                this.Favorite.push(ov);
             } else {
-                favList.forEach((rV, index) => {
-                    if (rV.id == ov.id) {
-                        favList.splice(index, 1);
+                this.Favorite.forEach((rV, index) => {
+                    if (rV.name == ov.name) {
+                        this.Favorite.splice(index, 1);
                     }
                 });
             }

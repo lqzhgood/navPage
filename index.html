@@ -59,17 +59,16 @@
                 </div>
             </div>
             <transition-group id="blockWrap" class="right" name="block-list" tag="div" appear>
-                <div class="block block-list-item" v-for="(item,type) in list" :id="type" :key="type" :style="{'order':item.order}" v-if="item.list.length>0">
-                    <div class="title">{{type}}</div>
-                    <!-- <div class="content"> -->
+                <div class="block block-list-item" v-for="(t,i) in all_list" :id="t.type" :key="t.type" :style="{'order':i}">
+                    <div class="title">{{t.type}}</div>
                     <transition-group name="item-complete" tag="div">
-                        <div class="item item-complete-item" :class="{'disabled':v.disabled}" v-for="v in item.list" :key="v.id">
+                        <div class="item item-complete-item" :class="{'disabled':v.disabled}" v-for="v in t.list" :key="v.name">
                             <div class="card" @click.stop="op($event,v)">
                                 <div class="tags">
                                     <span v-for="tag in v.tags" :key="tag.title" :class="tag.icon" :title="tag.title"></span>
                                 </div>
                                 <div class="img-box">
-                                    <img :src="'./img/card/'+ v.id + '.jpg'" alt="">
+                                    <img :src="v.icon || `./img/card/${v.count}.jpg`">
                                 </div>
                                 <div class="text-box">
                                     <h4>{{v.name}}</h4>
@@ -86,13 +85,13 @@
                             </div>
                         </div>
                     </transition-group>
-                    <!-- </div> -->
+
                 </div>
             </transition-group>
         </div>
     </div>
-    <script src="./data.js" charset="utf-8"></script>
     <script src="./lib/vue.min.js" charset="utf-8"></script>
+    <script src="./data.js" charset="utf-8"></script>
     <script src="./js/main.js"></script>
 </body>
 
